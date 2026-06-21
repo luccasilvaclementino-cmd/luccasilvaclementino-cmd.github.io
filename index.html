@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VetCare Clínica Veterinária e Pet Shop</title>
-    <!-- SEO Básico -->
     <meta name="description" content="Clínica Veterinária em Alumínio-SP. Consultas, Cirurgias, Dermatologia e Banho e Tosa. Atendimento com a Dra. Jessica Borges.">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,24 +16,23 @@
             --dark: #1a252f;
             --text: #4a4a4a;
             --gold: #f1c40f;
-            --bg-color: #f4fcf7;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
-        body { background-color: var(--bg-color); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        /* Fundo com gradiente suave estilo Apple para o Liquid Glass funcionar perfeitamente */
+        body { 
+            background: linear-gradient(135deg, #dcfce7 0%, #f4fcf7 50%, #e8f5e9 100%);
+            color: var(--text); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
 
-        /* Fundo Animado para o Glassmorphism */
-        .bg-shapes { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; pointer-events: none; }
-        .shape1 { position: absolute; top: -10%; left: -10%; width: 60vw; height: 60vw; background: #a7f3d0; border-radius: 50%; filter: blur(90px); opacity: 0.5; animation: float 12s infinite alternate; }
-        .shape2 { position: absolute; bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: #dcfce7; border-radius: 50%; filter: blur(100px); opacity: 0.6; animation: float 15s infinite alternate-reverse; }
-        @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(-40px) scale(1.05); } }
-
-        /* Classe de Animação Scroll (JavaScript vai ativar) */
+        /* Classe de Animação Scroll */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Efeito Vidro Premium */
+        /* Efeito Liquid Glass Premium */
         .glass-panel {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(16px);
@@ -48,9 +46,9 @@
         nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); padding: 15px 5%; display: flex; justify-content: center; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.5); position: sticky; top: 0; z-index: 1000; }
         nav h2 { color: var(--primary); font-weight: 700; font-size: 1.6rem; display: flex; align-items: center; gap: 8px; }
 
-        /* Hero Section */
-        header { position: relative; padding: 80px 5%; min-height: 85vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1601758228041-f3b279ce7bec?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover; }
-        .hero-glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); padding: 50px 40px; border-radius: 24px; text-align: center; max-width: 650px; z-index: 1; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.9); }
+        /* Hero Section (Sem imagens, focada no Cartão de Vidro) */
+        header { position: relative; padding: 80px 5%; min-height: 85vh; display: flex; align-items: center; justify-content: center; }
+        .hero-glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); padding: 60px 40px; border-radius: 30px; text-align: center; max-width: 650px; z-index: 1; box-shadow: 0 20px 50px rgba(0,0,0,0.08); border: 1px solid rgba(255,255,255,0.9); }
         .hero-glass-card h1 { font-size: 3rem; margin-bottom: 15px; line-height: 1.1; color: var(--dark); }
         .hero-glass-card h1 span { color: var(--primary); }
         .hero-glass-card p { font-size: 1.1rem; margin-bottom: 25px; color: #444; font-weight: 500; }
@@ -67,7 +65,7 @@
         .section-title h2 { font-size: 2.5rem; color: var(--dark); }
         .section-title h2 span { color: var(--primary); }
 
-        /* Sobre a Doutora (Foto 133255.jpg) */
+        /* Sobre a Doutora */
         .doctor-section { display: flex; gap: 50px; align-items: center; padding: 40px; margin-bottom: 40px; }
         .doc-image { flex: 1; }
         .doc-image img { width: 100%; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 5px solid #fff; object-fit: cover; }
@@ -79,7 +77,7 @@
         .doc-info ul li { margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; }
         .doc-info ul li i { color: var(--secondary); font-size: 1.2rem; margin-top: 3px; }
 
-        /* Destaque Centro Cirúrgico (Foto 133258.jpg em P&B) */
+        /* Destaque Centro Cirúrgico */
         .surgery-highlight { display: flex; gap: 40px; align-items: center; padding: 40px; margin-top: 40px; flex-direction: row-reverse; }
         .surgery-image img { width: 100%; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 5px solid #fff; }
 
@@ -88,7 +86,7 @@
         .service-category h3 { font-size: 1.8rem; color: var(--dark); margin-bottom: 30px; text-align: center; border-bottom: 2px solid rgba(39, 174, 96, 0.2); padding-bottom: 10px; display: inline-block; left: 50%; position: relative; transform: translateX(-50%); }
         .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .card { padding: 40px 30px; text-align: center; transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.8); }
+        .card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.9); }
         .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
         .card h4 { color: var(--dark); margin-bottom: 15px; font-size: 1.3rem; }
 
@@ -100,7 +98,7 @@
         .reviewer h5 { color: var(--dark); font-size: 1.1rem; }
         .reviewer span { color: var(--gold); font-size: 0.9rem; }
 
-        /* FAQ (Perguntas Frequentes) */
+        /* FAQ */
         .faq-container { max-width: 800px; margin: 0 auto; }
         details { background: rgba(255,255,255,0.6); border-radius: 16px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.8); transition: all 0.3s; }
         details:hover { background: rgba(255,255,255,0.9); }
@@ -125,7 +123,7 @@
         @media(max-width: 768px) {
             header { min-height: 75vh; }
             .hero-glass-card { padding: 40px 20px; }
-            .hero-glass-card h1 { font-size: 2.2rem; }
+            .hero-glass-card h1 { font-size: 2.4rem; }
             .doctor-section, .surgery-highlight { flex-direction: column; padding: 30px 20px; gap: 30px; }
             .doc-image img, .surgery-image img { max-width: 100%; }
             .section-title h2 { font-size: 2.2rem; }
@@ -133,11 +131,6 @@
     </style>
 </head>
 <body>
-
-    <div class="bg-shapes">
-        <div class="shape1"></div>
-        <div class="shape2"></div>
-    </div>
 
     <nav>
         <h2><i class="fa-solid fa-paw"></i> VetCare</h2>
@@ -160,10 +153,10 @@
             <h2>Nossa <span>Responsável</span></h2>
         </div>
         
-        <!-- Foto real da Doutora puxada diretamente do seu upload -->
+        <!-- O código já está puxando a foto exata. Não esqueça de subir o arquivo 133255.jpg no GitHub! -->
         <div class="doctor-section glass-panel reveal">
             <div class="doc-image">
-                <img src="133255.jpg" alt="Dra. Jessica Borges com paciente">
+                <img src="133255.jpg" alt="Dra. Jessica Borges com paciente border collie">
             </div>
             <div class="doc-info">
                 <h3>Dra. Jessica Borges</h3>
@@ -183,7 +176,6 @@
             <h2>Nossos <span>Serviços</span></h2>
         </div>
 
-        <!-- Categoria 1: Medicina e Saúde -->
         <div class="service-category reveal">
             <h3><i class="fa-solid fa-notes-medical" style="color: var(--primary);"></i> Medicina e Saúde</h3>
             <div class="grid-cards">
@@ -205,10 +197,10 @@
             </div>
         </div>
 
-        <!-- Destaque Cirúrgico (Foto Real 133258.jpg) -->
+        <!-- O código já está puxando a foto exata da cirurgia. Não esqueça de subir o arquivo 133258.jpg no GitHub! -->
         <div class="surgery-highlight glass-panel reveal">
             <div class="surgery-image" style="flex: 1;">
-                <img src="133258.jpg" alt="Procedimento Cirúrgico VetCare">
+                <img src="133258.jpg" alt="Procedimento Cirúrgico em Preto e Branco VetCare">
             </div>
             <div class="doc-info" style="flex: 1;">
                 <h3>Centro Cirúrgico Equipado</h3>
@@ -217,7 +209,6 @@
             </div>
         </div>
 
-        <!-- Categoria 2: Estética e Bem-Estar -->
         <div class="service-category reveal" style="margin-top: 60px;">
             <h3><i class="fa-solid fa-scissors" style="color: var(--primary);"></i> Estética e Bem-Estar</h3>
             <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
@@ -235,7 +226,6 @@
         </div>
     </section>
 
-    <!-- Depoimentos Reais -->
     <section>
         <div class="section-title reveal">
             <h2>O que dizem <span>Nossos Clientes</span></h2>
@@ -260,7 +250,6 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section>
         <div class="section-title reveal">
             <h2>Dúvidas <span>Frequentes</span></h2>
@@ -281,7 +270,6 @@
         </div>
     </section>
 
-    <!-- Contato -->
     <section>
         <div class="info-grid reveal">
             <div class="info-item glass-panel">
@@ -314,21 +302,20 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Script de Animação de Scroll (O Efeito UAU) -->
     <script>
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; // Quão cedo o elemento aparece
+                var elementVisible = 50;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Executa uma vez ao carregar a página
+        reveal();
     </script>
 </body>
 </html>
