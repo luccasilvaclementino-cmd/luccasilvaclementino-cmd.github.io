@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VetCare Clínica Veterinária e Pet Shop</title>
-    <!-- Fontes e Ícones -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -19,16 +18,14 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
-        /* Fundo Animado para o Efeito Glassmorphism funcionar perfeitamente */
         body { 
             background-color: #f4fcf7; 
             color: var(--text); 
             line-height: 1.6; 
             overflow-x: hidden; 
-            position: relative;
         }
 
-        /* Formas coloridas no fundo para dar contraste ao vidro */
+        /* Formas animadas no fundo para o efeito Liquid Glass do resto do site */
         .bg-shapes {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1; overflow: hidden; pointer-events: none;
@@ -43,101 +40,122 @@
             background: #dcfce7; border-radius: 50%; filter: blur(100px); opacity: 0.7;
             animation: float 12s infinite alternate-reverse;
         }
-        .shape3 {
-            position: absolute; top: 40%; left: 30%; width: 30vw; height: 30vw;
-            background: #e0e7ff; border-radius: 50%; filter: blur(90px); opacity: 0.5;
-        }
 
         @keyframes float {
             0% { transform: translateY(0) scale(1); }
             100% { transform: translateY(-50px) scale(1.1); }
         }
 
-        /* O Verdadeiro Efeito Liquid Glass */
+        /* Efeito Liquid Glass Padrão */
         .glass-panel {
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07);
             overflow: hidden;
         }
 
-        /* Cabeçalho Fixo */
+        /* Cabeçalho Minimalista (Sem botão do WhatsApp) */
         nav {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 15px 5%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Logo centralizada */
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        nav h2 { color: var(--primary); font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 8px; }
-        .nav-btn {
-            background: var(--primary); color: #fff;
-            padding: 10px 24px; border-radius: 50px; text-decoration: none; font-weight: 600;
-            transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
-        }
-        .nav-btn:hover { background: var(--dark); transform: scale(1.05); }
+        nav h2 { color: var(--primary); font-weight: 700; font-size: 1.8rem; display: flex; align-items: center; gap: 8px; }
 
-        /* Hero Section */
+        /* Nova Hero Section com Imagem de Fundo e Cartão de Vidro */
         header {
-            padding: 80px 5%; text-align: center; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; position: relative; z-index: 1;
+            position: relative;
+            padding: 100px 5%;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Imagem de um cachorro no fundo */
+            background: url('https://images.unsplash.com/photo-1601758228041-f3b279ce7bec?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
         }
-        .hero-text { max-width: 800px; margin-bottom: 40px; }
-        .hero-text h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; font-weight: 700; color: var(--dark); }
-        .hero-text h1 span { color: var(--primary); }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; color: #555; }
-        
-        .rating { color: var(--gold); font-size: 1.3rem; margin-bottom: 40px; font-weight: 600; }
-        .rating span { color: var(--text); font-weight: 500; font-size: 1.1rem; margin-left: 10px; }
-        
-        .btn-large {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: var(--primary); color: #fff;
-            padding: 20px 45px; border-radius: 50px; text-decoration: none;
-            font-weight: 600; font-size: 1.2rem; box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
-            transition: all 0.3s ease;
+        /* Máscara escura suave sobre a imagem do fundo */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
         }
-        .btn-large:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5); }
+        
+        .hero-glass-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 60px 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            text-align: center;
+        }
+        .hero-glass-card h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; font-weight: 700; color: var(--dark); }
+        .hero-glass-card h1 span { color: var(--primary); }
+        .hero-glass-card p { font-size: 1.2rem; margin-bottom: 25px; color: #444; font-weight: 500; }
+        .rating { color: var(--gold); font-size: 1.4rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .rating span { color: var(--dark); font-weight: 600; font-size: 1.1rem; }
 
-        /* Seção do Médico / Imagem Corrigida */
-        .doctor-section { margin: 20px auto 80px; max-width: 1000px; padding: 40px; display: flex; gap: 40px; align-items: center; z-index: 2; position: relative; }
+        /* Seção da Doutora */
+        .doctor-section { margin: 80px auto; max-width: 1000px; padding: 40px; display: flex; gap: 50px; align-items: center; position: relative; }
         .doc-image { flex: 1; text-align: center; }
-        .doc-image img { width: 100%; max-width: 380px; border-radius: 20px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 4px solid rgba(255,255,255,0.8); }
-        
+        /* Esta é a imagem que você vai trocar depois */
+        .doc-image img { 
+            width: 100%; max-width: 380px; border-radius: 24px; object-fit: cover; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 6px solid rgba(255,255,255,0.9); 
+        }
         .doc-info { flex: 1.5; }
         .doc-info h3 { font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
         .doc-info h4 { font-size: 1.1rem; color: var(--dark); margin-bottom: 20px; font-weight: 500; }
-        .doc-info ul { list-style: none; margin-top: 20px; }
+        .doc-info p { font-size: 1.05rem; margin-bottom: 20px; }
+        .doc-info ul { list-style: none; }
         .doc-info ul li { margin-bottom: 15px; display: flex; gap: 12px; align-items: flex-start; font-size: 1.05rem; }
         .doc-info ul li i { color: var(--secondary); font-size: 1.3rem; margin-top: 3px; }
 
-        /* Galeria de Fotos Adicionais */
-        section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        /* Galeria de Fotos */
+        section { padding: 40px 5%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
         .section-title { text-align: center; margin-bottom: 50px; }
         .section-title h2 { font-size: 2.8rem; color: var(--dark); }
         .section-title h2 span { color: var(--primary); }
         
         .photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .photo-gallery img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; transition: 0.3s; }
+        .photo-gallery img { width: 100%; height: 250px; object-fit: cover; border-radius: 20px; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .photo-gallery img:hover { transform: scale(1.03); }
 
-        /* Serviços com Glassmorphism */
+        /* Serviços */
         .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .card { padding: 40px 30px; text-align: center; transition: all 0.4s ease; cursor: pointer; }
+        .card { padding: 40px 30px; text-align: center; transition: all 0.4s ease; cursor: default; }
         .card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.7); }
-        .card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(39, 174, 96, 0.2)); }
+        .card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; }
         .card h3 { color: var(--dark); margin-bottom: 15px; font-size: 1.4rem; }
 
-        /* Rodapé e Info */
+        /* Informações e Botão de Contato */
+        .contact-area { text-align: center; margin-top: 60px; padding: 40px; }
+        .btn-large {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--primary); color: #fff;
+            padding: 18px 40px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; font-size: 1.2rem; box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-large:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(39, 174, 96, 0.4); }
+
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
         .info-item { text-align: center; padding: 30px; }
         .info-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
@@ -145,11 +163,11 @@
         footer { text-align: center; padding: 40px 20px; background: rgba(26, 37, 47, 0.95); color: #fff; margin-top: 60px; backdrop-filter: blur(10px); }
         footer p { margin-bottom: 5px; opacity: 0.9; }
 
-        /* WhatsApp Flutuante Animado */
+        /* Único WhatsApp Flutuante Animado */
         .whatsapp-float {
-            position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
             background: linear-gradient(135deg, #25d366, #128C7E); color: #FFF; border-radius: 50%;
-            text-align: center; font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            text-align: center; font-size: 32px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
             z-index: 1000; display: flex; align-items: center; justify-content: center; text-decoration: none;
             animation: pulse 2s infinite; border: 2px solid #fff;
         }
@@ -160,46 +178,42 @@
         }
 
         @media(max-width: 768px) {
-            .hero-text h1 { font-size: 2.8rem; }
-            .doctor-section { flex-direction: column; padding: 25px; gap: 20px; }
-            .doc-image img { max-width: 100%; height: auto; }
-            .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 30px; }
+            .hero-glass-card { padding: 40px 20px; }
+            .hero-glass-card h1 { font-size: 2.5rem; }
+            .doctor-section { flex-direction: column; padding: 20px; gap: 30px; }
+            .doc-image img { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Fundo Fixo para o Glassmorphism -->
+    <!-- Fundo Animado -->
     <div class="bg-shapes">
         <div class="shape1"></div>
         <div class="shape2"></div>
-        <div class="shape3"></div>
     </div>
 
+    <!-- Navegação Limpa -->
     <nav>
         <h2><i class="fa-solid fa-paw"></i> VetCare</h2>
-        <a href="https://wa.me/5511998888800" class="nav-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Fale Conosco</a>
     </nav>
 
+    <!-- Nova Hero Section -->
     <header>
-        <div class="hero-text">
+        <div class="hero-glass-card">
             <h1>Medicina Veterinária com <span>Amor e Ciência</span></h1>
             <p>O cuidado premium que o seu melhor amigo merece. Infraestrutura completa e atendimento acolhedor em Alumínio-SP.</p>
-            
-            <!-- Avaliação ajustada conforme pedido -->
             <div class="rating">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 <span>4,9 no Google</span>
             </div>
-            
-            <a href="https://wa.me/5511998888800" class="btn-large" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar Atendimento</a>
         </div>
     </header>
 
-    <!-- Seção de Corpo Clínico com imagem real (bug corrigido) e Liquid Glass -->
+    <!-- Seção da Doutora -->
     <div class="doctor-section glass-panel">
         <div class="doc-image">
-            <!-- Imagem 1: Profissional -->
+            <!-- AQUI É ONDE A FOTO SERÁ TROCADA -->
             <img src="https://images.unsplash.com/photo-1594149929911-78975a43d4f5?auto=format&fit=crop&q=80&w=800" alt="Dra. Jessica Borges">
         </div>
         <div class="doc-info">
@@ -209,23 +223,18 @@
             <ul>
                 <li><i class="fa-solid fa-graduation-cap"></i> Graduada em Medicina Veterinária pela UNISO - Sorocaba/SP</li>
                 <li><i class="fa-solid fa-stethoscope"></i> Pós-Graduanda em Clínica Médica Geral pela Anclivepa - SP</li>
-                <li><i class="fa-solid fa-microscope"></i> Forte atuação e atualizações em Dermatologia Veterinária</li>
-                <li><i class="fa-solid fa-award"></i> Membro da Associação Nacional de Clínicos Veterinários</li>
+                <li><i class="fa-solid fa-microscope"></i> Atualizações em Dermatologia Veterinária</li>
             </ul>
         </div>
     </div>
 
-    <!-- Nova seção de fotos -->
     <section>
         <div class="section-title">
             <h2>Nossa <span>Estrutura</span></h2>
         </div>
         <div class="photo-gallery">
-            <!-- Imagem 2: Cuidado/Banho -->
             <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=800" alt="Cuidado Pet" class="glass-panel">
-            <!-- Imagem 3: Atendimento Clínico -->
             <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800" alt="Atendimento Veterinário" class="glass-panel">
-            <!-- Imagem 4: Gatos/Clínica -->
             <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800" alt="Paciente Felino" class="glass-panel">
         </div>
     </section>
@@ -257,7 +266,14 @@
             </div>
         </div>
 
-        <div class="info-grid" style="margin-top: 80px;">
+        <!-- Seção de Contato Centralizada no Final -->
+        <div class="contact-area glass-panel">
+            <h2 style="color: var(--dark); font-size: 2rem; margin-bottom: 20px;">Precisa de Atendimento?</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">Nossa equipe está pronta para receber o seu pet com todo o carinho e cuidado.</p>
+            <a href="https://wa.me/5511998888800" class="btn-large" target="_blank"><i class="fa-brands fa-whatsapp"></i> Fale Conosco</a>
+        </div>
+
+        <div class="info-grid">
             <div class="info-item glass-panel">
                 <i class="fa-solid fa-location-dot"></i>
                 <h3>Localização</h3>
@@ -268,11 +284,6 @@
                 <h3>Horário</h3>
                 <p>Segunda a Sábado<br>A partir das 08:00</p>
             </div>
-            <div class="info-item glass-panel">
-                <i class="fa-solid fa-mobile-screen"></i>
-                <h3>Contato</h3>
-                <p>(11) 99888-8800<br>Atendimento via WhatsApp</p>
-            </div>
         </div>
     </section>
 
@@ -281,6 +292,7 @@
         <p style="font-size: 0.9rem;">Resp. Técnica: Dra. Jessica Borges Souza Paulino | CRMV SP 46048</p>
     </footer>
 
+    <!-- Botão Flutuante Único -->
     <a href="https://wa.me/5511998888800" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
