@@ -15,32 +15,65 @@
             --dark: #1a252f;
             --text: #4a4a4a;
             --gold: #f1c40f;
-            /* Fundo com gradiente suave para destacar o efeito de vidro */
-            --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #f8fdf9 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg-gradient); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Fundo Animado para o Efeito Glassmorphism funcionar perfeitamente */
+        body { 
+            background-color: #f4fcf7; 
+            color: var(--text); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            position: relative;
+        }
 
-        /* Estilo Liquid Glass (Glassmorphism) */
+        /* Formas coloridas no fundo para dar contraste ao vidro */
+        .bg-shapes {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .shape1 {
+            position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: #a7f3d0; border-radius: 50%; filter: blur(80px); opacity: 0.6;
+            animation: float 10s infinite alternate;
+        }
+        .shape2 {
+            position: absolute; bottom: 0; right: -10%; width: 40vw; height: 40vw;
+            background: #dcfce7; border-radius: 50%; filter: blur(100px); opacity: 0.7;
+            animation: float 12s infinite alternate-reverse;
+        }
+        .shape3 {
+            position: absolute; top: 40%; left: 30%; width: 30vw; height: 30vw;
+            background: #e0e7ff; border-radius: 50%; filter: blur(90px); opacity: 0.5;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-50px) scale(1.1); }
+        }
+
+        /* O Verdadeiro Efeito Liquid Glass */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(39, 174, 96, 0.08);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
         }
 
         /* Cabeçalho Fixo */
         nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -55,26 +88,14 @@
 
         /* Hero Section */
         header {
-            padding: 100px 5%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-            position: relative;
+            padding: 80px 5%; text-align: center; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; position: relative; z-index: 1;
         }
-        /* Círculo decorativo ao fundo */
-        .blob {
-            position: absolute; width: 400px; height: 400px;
-            background: var(--secondary); opacity: 0.15;
-            border-radius: 50%; top: -100px; right: -100px; filter: blur(50px); z-index: -1;
-        }
-        
-        .hero-text { max-width: 800px; z-index: 1; }
+        .hero-text { max-width: 800px; margin-bottom: 40px; }
         .hero-text h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; font-weight: 700; color: var(--dark); }
         .hero-text h1 span { color: var(--primary); }
         .hero-text p { font-size: 1.2rem; margin-bottom: 30px; color: #555; }
+        
         .rating { color: var(--gold); font-size: 1.3rem; margin-bottom: 40px; font-weight: 600; }
         .rating span { color: var(--text); font-weight: 500; font-size: 1.1rem; margin-left: 10px; }
         
@@ -87,32 +108,33 @@
         }
         .btn-large:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5); }
 
-        /* Corpo Clínico / Currículo (Destaque para a Dra. Jessica) */
-        .doctor-section { margin: -50px auto 80px; max-width: 1000px; padding: 40px; display: flex; gap: 40px; align-items: center; z-index: 2; position: relative; }
+        /* Seção do Médico / Imagem Corrigida */
+        .doctor-section { margin: 20px auto 80px; max-width: 1000px; padding: 40px; display: flex; gap: 40px; align-items: center; z-index: 2; position: relative; }
         .doc-image { flex: 1; text-align: center; }
-        /* Espaço onde você ou o cliente poderão inserir as fotos reais */
-        .doc-image-placeholder { 
-            width: 100%; max-width: 350px; height: 400px; margin: 0 auto;
-            background: url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1000') center/cover;
-            border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 5px solid #fff;
-        }
+        .doc-image img { width: 100%; max-width: 380px; border-radius: 20px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 4px solid rgba(255,255,255,0.8); }
+        
         .doc-info { flex: 1.5; }
         .doc-info h3 { font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
         .doc-info h4 { font-size: 1.1rem; color: var(--dark); margin-bottom: 20px; font-weight: 500; }
         .doc-info ul { list-style: none; margin-top: 20px; }
-        .doc-info ul li { margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start; }
-        .doc-info ul li i { color: var(--secondary); font-size: 1.2rem; margin-top: 3px; }
+        .doc-info ul li { margin-bottom: 15px; display: flex; gap: 12px; align-items: flex-start; font-size: 1.05rem; }
+        .doc-info ul li i { color: var(--secondary); font-size: 1.3rem; margin-top: 3px; }
 
-        /* Serviços com Glassmorphism */
-        section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 60px; }
+        /* Galeria de Fotos Adicionais */
+        section { padding: 60px 5%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .section-title { text-align: center; margin-bottom: 50px; }
         .section-title h2 { font-size: 2.8rem; color: var(--dark); }
         .section-title h2 span { color: var(--primary); }
         
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+        .photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .photo-gallery img { width: 100%; height: 250px; object-fit: cover; border-radius: 16px; transition: 0.3s; }
+        .photo-gallery img:hover { transform: scale(1.03); }
+
+        /* Serviços com Glassmorphism */
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .card { padding: 40px 30px; text-align: center; transition: all 0.4s ease; cursor: pointer; }
-        .card:hover { transform: translateY(-15px); background: rgba(255, 255, 255, 0.8); }
-        .card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; filter: drop-shadow(0 4px 6px rgba(39, 174, 96, 0.2)); }
+        .card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.7); }
+        .card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(39, 174, 96, 0.2)); }
         .card h3 { color: var(--dark); margin-bottom: 15px; font-size: 1.4rem; }
 
         /* Rodapé e Info */
@@ -120,8 +142,8 @@
         .info-item { text-align: center; padding: 30px; }
         .info-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
         
-        footer { text-align: center; padding: 40px 20px; background: var(--dark); color: #fff; margin-top: 80px; }
-        footer p { margin-bottom: 5px; opacity: 0.8; }
+        footer { text-align: center; padding: 40px 20px; background: rgba(26, 37, 47, 0.95); color: #fff; margin-top: 60px; backdrop-filter: blur(10px); }
+        footer p { margin-bottom: 5px; opacity: 0.9; }
 
         /* WhatsApp Flutuante Animado */
         .whatsapp-float {
@@ -139,38 +161,46 @@
 
         @media(max-width: 768px) {
             .hero-text h1 { font-size: 2.8rem; }
-            .doctor-section { flex-direction: column; padding: 25px; margin-top: 0; }
-            .doc-image-placeholder { height: 300px; }
+            .doctor-section { flex-direction: column; padding: 25px; gap: 20px; }
+            .doc-image img { max-width: 100%; height: auto; }
             .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 30px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Fundo Fixo para o Glassmorphism -->
+    <div class="bg-shapes">
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+        <div class="shape3"></div>
+    </div>
+
     <nav>
         <h2><i class="fa-solid fa-paw"></i> VetCare</h2>
-        <!-- Link corrigido com o número correto -->
         <a href="https://wa.me/5511998888800" class="nav-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Fale Conosco</a>
     </nav>
 
     <header>
-        <div class="blob"></div>
         <div class="hero-text">
             <h1>Medicina Veterinária com <span>Amor e Ciência</span></h1>
             <p>O cuidado premium que o seu melhor amigo merece. Infraestrutura completa e atendimento acolhedor em Alumínio-SP.</p>
+            
+            <!-- Avaliação ajustada conforme pedido -->
             <div class="rating">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <span>4,9 Avaliações no Google</span>
+                <span>4,9 no Google</span>
             </div>
-            <!-- Link corrigido com o número correto -->
+            
             <a href="https://wa.me/5511998888800" class="btn-large" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar Atendimento</a>
         </div>
     </header>
 
-    <!-- Nova seção de Corpo Clínico com Efeito Liquid Glass -->
+    <!-- Seção de Corpo Clínico com imagem real (bug corrigido) e Liquid Glass -->
     <div class="doctor-section glass-panel">
         <div class="doc-image">
-            <div class="doc-image-placeholder" title="Espaço para a foto da Dra. Jessica"></div>
+            <!-- Imagem 1: Profissional -->
+            <img src="https://images.unsplash.com/photo-1594149929911-78975a43d4f5?auto=format&fit=crop&q=80&w=800" alt="Dra. Jessica Borges">
         </div>
         <div class="doc-info">
             <h3>Dra. Jessica Borges</h3>
@@ -178,12 +208,27 @@
             <p>Com um profundo amor pelos animais e anos de dedicação acadêmica, a Dra. Jessica lidera a equipe da VetCare garantindo diagnósticos precisos e tratamentos modernos.</p>
             <ul>
                 <li><i class="fa-solid fa-graduation-cap"></i> Graduada em Medicina Veterinária pela UNISO - Sorocaba/SP</li>
-                <li><i class="fa-solid fa-stethoscope"></i> Pós-Graduanda em Clínica Médica Geral (Cães e Gatos) pela Anclivepa - SP</li>
-                <li><i class="fa-solid fa-microscope"></i> Forte atuação e atualizações constantes em Dermatologia Veterinária</li>
-                <li><i class="fa-solid fa-award"></i> Membro da Associação Nacional de Clínicos Veterinários de Pequenos Animais</li>
+                <li><i class="fa-solid fa-stethoscope"></i> Pós-Graduanda em Clínica Médica Geral pela Anclivepa - SP</li>
+                <li><i class="fa-solid fa-microscope"></i> Forte atuação e atualizações em Dermatologia Veterinária</li>
+                <li><i class="fa-solid fa-award"></i> Membro da Associação Nacional de Clínicos Veterinários</li>
             </ul>
         </div>
     </div>
+
+    <!-- Nova seção de fotos -->
+    <section>
+        <div class="section-title">
+            <h2>Nossa <span>Estrutura</span></h2>
+        </div>
+        <div class="photo-gallery">
+            <!-- Imagem 2: Cuidado/Banho -->
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=800" alt="Cuidado Pet" class="glass-panel">
+            <!-- Imagem 3: Atendimento Clínico -->
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=80&w=800" alt="Atendimento Veterinário" class="glass-panel">
+            <!-- Imagem 4: Gatos/Clínica -->
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=800" alt="Paciente Felino" class="glass-panel">
+        </div>
+    </section>
 
     <section>
         <div class="section-title">
@@ -226,7 +271,6 @@
             <div class="info-item glass-panel">
                 <i class="fa-solid fa-mobile-screen"></i>
                 <h3>Contato</h3>
-                <!-- Texto corrigido -->
                 <p>(11) 99888-8800<br>Atendimento via WhatsApp</p>
             </div>
         </div>
@@ -234,11 +278,9 @@
 
     <footer>
         <p><strong>Vetcare Clínica Veterinária e Pet Shop</strong> &copy; 2026</p>
-        <!-- Inserido o CRMV no rodapé para reforçar a legalidade e profissionalismo -->
         <p style="font-size: 0.9rem;">Resp. Técnica: Dra. Jessica Borges Souza Paulino | CRMV SP 46048</p>
     </footer>
 
-    <!-- Link flutuante corrigido -->
     <a href="https://wa.me/5511998888800" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
