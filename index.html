@@ -4,118 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VetCare Clínica Veterinária e Pet Shop</title>
-    <!-- Fonte Moderna do Google -->
+    <!-- Fontes e Ícones -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Biblioteca de Ícones Profissionais -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --primary: #27ae60;
             --secondary: #2ecc71;
-            --dark: #2c3e50;
-            --light: #f8fdf9;
-            --white: #ffffff;
-            --text: #555555;
+            --dark: #1a252f;
+            --text: #4a4a4a;
             --gold: #f1c40f;
+            /* Fundo com gradiente suave para destacar o efeito de vidro */
+            --bg-gradient: linear-gradient(135deg, #e0f2f1 0%, #f8fdf9 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--light); color: var(--text); line-height: 1.6; }
+        body { background: var(--bg-gradient); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+        /* Estilo Liquid Glass (Glassmorphism) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(39, 174, 96, 0.08);
+        }
 
         /* Cabeçalho Fixo */
         nav {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
-        nav h2 { color: var(--primary); font-weight: 700; font-size: 1.5rem; }
+        nav h2 { color: var(--primary); font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 8px; }
         .nav-btn {
-            background: var(--primary); color: var(--white);
-            padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600;
-            transition: 0.3s; display: flex; align-items: center; gap: 8px;
+            background: var(--primary); color: #fff;
+            padding: 10px 24px; border-radius: 50px; text-decoration: none; font-weight: 600;
+            transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
         }
-        .nav-btn:hover { background: var(--dark); }
+        .nav-btn:hover { background: var(--dark); transform: scale(1.05); }
 
-        /* Hero Section com Imagem Emocional */
+        /* Hero Section */
         header {
-            /* Imagem profissional de placeholder - pode ser trocada por uma real depois */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=2070') center/cover;
-            color: var(--white);
-            padding: 120px 5%;
+            padding: 100px 5%;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            min-height: 80vh;
+            position: relative;
         }
-        .hero-text h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; font-weight: 700; }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .rating { color: var(--gold); font-size: 1.2rem; margin-bottom: 30px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .rating span { color: var(--white); font-weight: 400; font-size: 1rem; }
+        /* Círculo decorativo ao fundo */
+        .blob {
+            position: absolute; width: 400px; height: 400px;
+            background: var(--secondary); opacity: 0.15;
+            border-radius: 50%; top: -100px; right: -100px; filter: blur(50px); z-index: -1;
+        }
+        
+        .hero-text { max-width: 800px; z-index: 1; }
+        .hero-text h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; font-weight: 700; color: var(--dark); }
+        .hero-text h1 span { color: var(--primary); }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; color: #555; }
+        .rating { color: var(--gold); font-size: 1.3rem; margin-bottom: 40px; font-weight: 600; }
+        .rating span { color: var(--text); font-weight: 500; font-size: 1.1rem; margin-left: 10px; }
+        
         .btn-large {
             display: inline-flex; align-items: center; gap: 10px;
-            background: var(--primary); color: var(--white);
-            padding: 18px 40px; border-radius: 50px; text-decoration: none;
-            font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--primary); color: #fff;
+            padding: 20px 45px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; font-size: 1.2rem; box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+            transition: all 0.3s ease;
         }
-        .btn-large:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(39, 174, 96, 0.6); }
+        .btn-large:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(39, 174, 96, 0.5); }
 
-        /* Seções e Cards Flutuantes */
+        /* Corpo Clínico / Currículo (Destaque para a Dra. Jessica) */
+        .doctor-section { margin: -50px auto 80px; max-width: 1000px; padding: 40px; display: flex; gap: 40px; align-items: center; z-index: 2; position: relative; }
+        .doc-image { flex: 1; text-align: center; }
+        /* Espaço onde você ou o cliente poderão inserir as fotos reais */
+        .doc-image-placeholder { 
+            width: 100%; max-width: 350px; height: 400px; margin: 0 auto;
+            background: url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1000') center/cover;
+            border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border: 5px solid #fff;
+        }
+        .doc-info { flex: 1.5; }
+        .doc-info h3 { font-size: 2.2rem; color: var(--primary); margin-bottom: 5px; }
+        .doc-info h4 { font-size: 1.1rem; color: var(--dark); margin-bottom: 20px; font-weight: 500; }
+        .doc-info ul { list-style: none; margin-top: 20px; }
+        .doc-info ul li { margin-bottom: 12px; display: flex; gap: 10px; align-items: flex-start; }
+        .doc-info ul li i { color: var(--secondary); font-size: 1.2rem; margin-top: 3px; }
+
+        /* Serviços com Glassmorphism */
         section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 2.5rem; color: var(--dark); }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.8rem; color: var(--dark); }
         .section-title h2 span { color: var(--primary); }
         
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .card {
-            background: var(--white); padding: 40px 30px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03); text-align: center;
-            transition: all 0.4s ease; border-bottom: 4px solid transparent;
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); border-bottom: 4px solid var(--primary); }
-        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
-        .card h3 { color: var(--dark); margin-bottom: 15px; font-size: 1.3rem; }
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+        .card { padding: 40px 30px; text-align: center; transition: all 0.4s ease; cursor: pointer; }
+        .card:hover { transform: translateY(-15px); background: rgba(255, 255, 255, 0.8); }
+        .card i { font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; filter: drop-shadow(0 4px 6px rgba(39, 174, 96, 0.2)); }
+        .card h3 { color: var(--dark); margin-bottom: 15px; font-size: 1.4rem; }
 
-        /* Avaliações */
-        .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .review { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: relative; }
-        .review i.fa-quote-left { font-size: 2rem; color: #edf2f7; position: absolute; top: 20px; left: 20px; }
-        .review p { font-style: italic; color: var(--text); position: relative; z-index: 1; padding-top: 10px; margin-bottom: 20px; }
-        .review-author { display: flex; align-items: center; gap: 15px; }
-        .review-author h4 { color: var(--dark); margin: 0; }
-        .stars { color: var(--gold); font-size: 1rem; }
-
-        /* Sobre a Equipe (Destaque Humanizado) */
-        .team-section { background: var(--white); border-radius: 20px; padding: 50px; display: flex; align-items: center; gap: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-top: 50px; flex-wrap: wrap; }
-        .team-text { flex: 1; min-width: 300px; }
-        .team-text h3 { color: var(--dark); font-size: 2rem; margin-bottom: 15px; }
-        .team-text p { margin-bottom: 20px; }
-        .team-image { flex: 1; min-width: 300px; text-align: center; }
-        .team-image img { width: 100%; max-width: 400px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-
-        /* Informações e Rodapé */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px; }
-        .info-item { text-align: center; padding: 20px; background: var(--white); border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
-        .info-item i { font-size: 2rem; color: var(--primary); margin-bottom: 15px; }
+        /* Rodapé e Info */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .info-item { text-align: center; padding: 30px; }
+        .info-item i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
         
-        footer { text-align: center; padding: 40px 20px; background: var(--dark); color: #a0aec0; }
-        footer p { margin-bottom: 5px; }
+        footer { text-align: center; padding: 40px 20px; background: var(--dark); color: #fff; margin-top: 80px; }
+        footer p { margin-bottom: 5px; opacity: 0.8; }
 
-        /* WhatsApp Flutuante com Efeito de Pulso */
+        /* WhatsApp Flutuante Animado */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-            background-color: #25d366; color: #FFF; border-radius: 50px;
-            text-align: center; font-size: 35px; box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+            position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
+            background: linear-gradient(135deg, #25d366, #128C7E); color: #FFF; border-radius: 50%;
+            text-align: center; font-size: 35px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
             z-index: 1000; display: flex; align-items: center; justify-content: center; text-decoration: none;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite; border: 2px solid #fff;
         }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -124,131 +138,108 @@
         }
 
         @media(max-width: 768px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            .team-section { padding: 30px; flex-direction: column; text-align: center; }
-            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 30px; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .doctor-section { flex-direction: column; padding: 25px; margin-top: 0; }
+            .doc-image-placeholder { height: 300px; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 30px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <h2><i class="fa-solid fa-paw" style="color: var(--primary);"></i> VetCare</h2>
-        <a href="https://wa.me/551151231166" class="nav-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Contato</a>
+        <h2><i class="fa-solid fa-paw"></i> VetCare</h2>
+        <!-- Link corrigido com o número correto -->
+        <a href="https://wa.me/5511998888800" class="nav-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> Fale Conosco</a>
     </nav>
 
     <header>
+        <div class="blob"></div>
         <div class="hero-text">
-            <h1>Medicina Veterinária com <span style="color: var(--secondary);">Amor e Tecnologia</span></h1>
-            <p>A estrutura completa que o seu pet merece, com o atendimento acolhedor que você procura em Alumínio-SP.</p>
+            <h1>Medicina Veterinária com <span>Amor e Ciência</span></h1>
+            <p>O cuidado premium que o seu melhor amigo merece. Infraestrutura completa e atendimento acolhedor em Alumínio-SP.</p>
             <div class="rating">
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                <span>4,9 (107 avaliações no Google)</span>
+                <span>4,9 Avaliações no Google</span>
             </div>
-            <a href="https://wa.me/551151231166" class="btn-large" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar Avaliação Agora</a>
+            <!-- Link corrigido com o número correto -->
+            <a href="https://wa.me/5511998888800" class="btn-large" target="_blank"><i class="fa-brands fa-whatsapp"></i> Agendar Atendimento</a>
         </div>
     </header>
 
+    <!-- Nova seção de Corpo Clínico com Efeito Liquid Glass -->
+    <div class="doctor-section glass-panel">
+        <div class="doc-image">
+            <div class="doc-image-placeholder" title="Espaço para a foto da Dra. Jessica"></div>
+        </div>
+        <div class="doc-info">
+            <h3>Dra. Jessica Borges</h3>
+            <h4>Médica Veterinária Responsável | CRMV SP 46048</h4>
+            <p>Com um profundo amor pelos animais e anos de dedicação acadêmica, a Dra. Jessica lidera a equipe da VetCare garantindo diagnósticos precisos e tratamentos modernos.</p>
+            <ul>
+                <li><i class="fa-solid fa-graduation-cap"></i> Graduada em Medicina Veterinária pela UNISO - Sorocaba/SP</li>
+                <li><i class="fa-solid fa-stethoscope"></i> Pós-Graduanda em Clínica Médica Geral (Cães e Gatos) pela Anclivepa - SP</li>
+                <li><i class="fa-solid fa-microscope"></i> Forte atuação e atualizações constantes em Dermatologia Veterinária</li>
+                <li><i class="fa-solid fa-award"></i> Membro da Associação Nacional de Clínicos Veterinários de Pequenos Animais</li>
+            </ul>
+        </div>
+    </div>
+
     <section>
         <div class="section-title">
-            <h2>Nossos <span>Especialidades</span></h2>
+            <h2>Nossos <span>Serviços</span></h2>
         </div>
         <div class="services">
-            <div class="card">
+            <div class="card glass-panel">
                 <i class="fa-solid fa-user-doctor"></i>
                 <h3>Clínica Geral</h3>
-                <p>Atendimento preventivo e diagnóstico completo para garantir a saúde do seu melhor amigo.</p>
+                <p>Consultas preventivas e check-ups completos para a longevidade do seu pet.</p>
             </div>
-            <div class="card">
+            <div class="card glass-panel">
                 <i class="fa-solid fa-shower"></i>
                 <h3>Banho e Tosa</h3>
-                <p>Estética animal premium. Seu pet cheiroso, limpo e com tosas na tesoura feitas sob medida.</p>
+                <p>Estética animal com produtos premium e tosas específicas para cada raça.</p>
             </div>
-            <div class="card">
+            <div class="card glass-panel">
                 <i class="fa-solid fa-kit-medical"></i>
-                <h3>Castração e Cirurgias</h3>
-                <p>Centro cirúrgico moderno para procedimentos seguros e recuperação assistida e tranquila.</p>
+                <h3>Centro Cirúrgico</h3>
+                <p>Estrutura equipada para castrações e cirurgias com total monitoramento.</p>
             </div>
-            <div class="card">
-                <i class="fa-solid fa-tooth"></i>
-                <h3>Odontologia Pet</h3>
-                <p>Limpeza de tártaro e cirurgias dentárias para prevenir infecções e acabar com o mau hálito.</p>
+            <div class="card glass-panel">
+                <i class="fa-solid fa-dna"></i>
+                <h3>Dermatologia Pet</h3>
+                <p>Atendimento especializado para tratar alergias, coceiras e problemas de pele.</p>
             </div>
         </div>
 
-        <div class="team-section">
-            <div class="team-text">
-                <h3>Conheça a Família VetCare</h3>
-                <p>Nossa clínica é movida pela paixão aos animais. Sob os cuidados e a atenção constante da <strong>Dra. Jéssica</strong> e sua equipe, seu pet não é apenas um paciente, ele faz parte da nossa família.</p>
-                <p>Com um ambiente pensado para reduzir o estresse animal, unimos alta tecnologia de diagnósticos com um carinho que faz a diferença na recuperação.</p>
-            </div>
-            <div class="team-image">
-                <!-- Imagem ilustrativa de uma veterinária feliz - pode ser substituída por foto real -->
-                <img src="https://images.unsplash.com/photo-1628009368231-7bb7cbcb8127?auto=format&fit=crop&q=80&w=1000" alt="Equipe Veterinária VetCare">
-            </div>
-        </div>
-    </section>
-
-    <section style="background: #ffffff; margin-top: 0; max-width: 100%;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
-            <div class="section-title">
-                <h2>O que os tutores <span>falam de nós</span></h2>
-            </div>
-            <div class="reviews">
-                <div class="review">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p>Amo o cuidado que elas tem com os meus cachorros, já faz anos que só levo eles na Dra. Jéssica, muito atenciosa, cuidadosa e o banho é impecável, eles voltam muito cheirosos!</p>
-                    <div class="review-author">
-                        <div>
-                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <h4>Tutor(a) Local</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="review">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p>Adorei a experiência. Fui muito bem atendida, fiquei muito satisfeita com o serviço de banho e tosa, a equipe cuida super bem do Pet, são muito atenciosas, fizeram exatamente do jeito que eu pedi. Super recomendo!</p>
-                    <div class="review-author">
-                        <div>
-                            <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                            <h4>Gláucia Gomes</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="section-title">
-            <h2>Nossa <span>Localização</span></h2>
-        </div>
-        <div class="info-grid">
-            <div class="info-item">
+        <div class="info-grid" style="margin-top: 80px;">
+            <div class="info-item glass-panel">
                 <i class="fa-solid fa-location-dot"></i>
-                <h3>Endereço</h3>
-                <p>R. Rio Grande do Sul, 385<br>Vila Pedagio, Alumínio - SP<br>CEP 18125-000</p>
+                <h3>Localização</h3>
+                <p>R. Rio Grande do Sul, 385<br>Vila Pedagio, Alumínio - SP</p>
             </div>
-            <div class="info-item">
-                <i class="fa-solid fa-clock"></i>
+            <div class="info-item glass-panel">
+                <i class="fa-regular fa-clock"></i>
                 <h3>Horário</h3>
-                <p>Segunda a Sábado<br>A partir das 08:00<br><em>Domingo: Fechado</em></p>
+                <p>Segunda a Sábado<br>A partir das 08:00</p>
             </div>
-            <div class="info-item">
-                <i class="fa-solid fa-phone"></i>
+            <div class="info-item glass-panel">
+                <i class="fa-solid fa-mobile-screen"></i>
                 <h3>Contato</h3>
-                <p>(11) 5123-1166<br>Agendamentos via WhatsApp e Ligações</p>
+                <!-- Texto corrigido -->
+                <p>(11) 99888-8800<br>Atendimento via WhatsApp</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p><strong>VetCare Clínica Veterinária e Pet Shop</strong> &copy; 2026</p>
-        <p style="font-size: 0.9rem; margin-top: 10px;">CNPJ: 00.000.000/0000-00 | Médico Veterinário Responsável</p>
+        <p><strong>Vetcare Clínica Veterinária e Pet Shop</strong> &copy; 2026</p>
+        <!-- Inserido o CRMV no rodapé para reforçar a legalidade e profissionalismo -->
+        <p style="font-size: 0.9rem;">Resp. Técnica: Dra. Jessica Borges Souza Paulino | CRMV SP 46048</p>
     </footer>
 
-    <!-- Botão Fixo do WhatsApp -->
-    <a href="https://wa.me/551151231166" class="whatsapp-float" target="_blank" title="Fale conosco pelo WhatsApp">
+    <!-- Link flutuante corrigido -->
+    <a href="https://wa.me/5511998888800" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
